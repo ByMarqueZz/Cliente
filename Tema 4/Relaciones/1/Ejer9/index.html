@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./img/descarga.png" id="imagen">
+    <script>
+        // Con el uso de eventos mueve una imagen cuando pulses el raton y sueltala cuando dejes de pulsar el raton
+        let imagen = document.getElementById("imagen");
+        imagen.addEventListener("mousedown", function(){
+            imagen.style.position = "absolute";
+            document.addEventListener("mousemove", moverImagen);
+        });
+        imagen.addEventListener("mouseup", function(){
+            document.removeEventListener("mousemove", moverImagen);
+        });
+        function moverImagen(event){
+            imagen.style.top = event.clientY - imagen.offsetHeight/2 + "px";
+            imagen.style.left = event.clientX - imagen.offsetWidth/2 + "px";
+        }
+    </script>
+</body>
+</html>

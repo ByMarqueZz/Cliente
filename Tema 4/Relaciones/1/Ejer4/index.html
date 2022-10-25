@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.body.onload = empezar;
+        function pintar() {
+            if (event.ctrlKey == true) {
+                event.target.style.backgroundColor = 'red';
+            }
+            if (event.shiftKey == true) {
+                event.target.style.backgroundColor = 'blue';
+            }
+            if (event.altKey == true) {
+                event.target.style.backgroundColor = 'white';
+            }
+        }
+        function borrarTodasLasCeldas() {
+            var celdas = document.getElementsByTagName('td');
+            for (var i = 0; i < celdas.length; i++) {
+                celdas[i].style.backgroundColor = 'white';
+            }
+        }
+        function empezar() {
+            document.write("<table id='miTabla'>");
+            for(i=0;i<=100;i++) {
+                document.write("<tr>");
+                    for(o=0;o<100;o++) {
+                        document.write("<td width='5px' height='5px' onmouseover='pintar()'></td>");
+                    }
+                document.write("</tr>");
+                }
+            document.write("</table>");
+            document.write("<button onclick='borrarTodasLasCeldas()'>Limpiar</button>");
+        }
+    </script>
+</body>
+</html>

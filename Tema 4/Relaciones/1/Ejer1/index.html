@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="miTitulo">Hola no me clickes</h1>
+    <script>
+        const miH1 = document.getElementById("miTitulo");
+        function clicked() {
+            alert("Buen click bro");
+        }
+        miH1.addEventListener('click', clicked);
+    </script>
+</body>
+</html>
