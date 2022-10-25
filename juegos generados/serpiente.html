@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="canvas" width="1000px" height="500px"></canvas>
+    <script>
+        //  juego de la serpiente
+        function empezar(){
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext("2d");
+            let width = canvas.width;
+            let height = canvas.height;
+            let blockSize = 10;
+            let widthInBlocks = width / blockSize;
+            let heightInBlocks = height / blockSize;
+            let score = 0;
+            let timeOut;
+            let time = 60;
+            let snake = new Snake([[6,4],[5,4],[4,4],[3,4],[2,4]], "right");
+            let apple = new Apple([10,10]);
+            let interval = setInterval(function(){
+                ctx.clearRect(0,0,width,height);
+                snake.draw();
+                snake.move();
+                apple.draw();
+                drawScore();
+                if(snake.checkCollision()){
+                    gameOver();
+                }else if(snake.isEatingApple(apple)){
+                    score++;
+                    snake.ateApple = true;
+                    do{
+                        apple.setNewPosition();
+                    }while(apple.isOnSnake(snake))
+                }
+            }, time);
+            function gameOver(){
+                clearInterval(interval);
+                ctx.font = "bold 70px sans-serif";
+                ctx.fillStyle = "black";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.strokeStyle = "white";
+                ctx.lineWidth = 5;
+                ctx.strokeText("Game Over", width / 2, height / 2);
+                ctx.fillText("Game Over", width / 2, height / 2);
+            }
+            function drawScore(){
+                ctx.font = "bold 200px sans-serif";
+                ctx.fillStyle = "gray";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(score.toString(), width / 2, height / 2);
+            }
+            function restart(){
+                snake = new Snake([[6,4],[5,4],[4,4],[3,4],[2,4]], "right");
+                apple = new Apple([10,10]);
+                score = 0;
+                clearInterval(interval);
+                interval = setInterval(function(){
+                    ctx.clearRect(0,0,width,height);
+                    snake.draw();
+                    snake.move();
+                    apple.draw();
+                    drawScore();
+                    drawTime();
+                    if(snake.checkCollision()){
+                        gameOver();
+                    }else if(snake.isEatingApple(apple)){
+                        score++;
+                        snake.ateApple = true;
+                        do{
+                            apple.setNewPosition();
+                        }while(apple.isOnSnake(snake))
+                    }
+                }, time);
+            }
+            function drawBlock(ctx, position){
+                let x = position[0] * blockSize;
+                let y = position[1] * blockSize;
+                ctx.fillRect(x,y,blockSize,blockSize);
+            }
+            function Snake(body, direction){
+                this.body = body;
+                this.direction = direction;
+                this.ateApple = false;
+                this.draw = function(){
+                    ctx.save();
+                    ctx.fillStyle = "#ff0000";
+                    for(let i = 0; i < this.body.length; i++){
+                        drawBlock(ctx, this.body[i]);
+                    }
+                    ctx.restore();
+                };
+                this.move = function(){
+                    let nextPosition = this.body[0].slice();
+                    switch(this.direction){
+                        case "left":
+                            nextPosition[0] -= 1;
+                            break;
+                        case "right":
+                            nextPosition[0] += 1;
+                            break;
+                        case "down":
+                            nextPosition[1] += 1;
+                            break;
+                        case "up":
+                            nextPosition[1] -= 1;
+                            break;
+                        default:
+                            throw("Invalid Direction");
+                    }
+                    this.body.unshift(nextPosition);
+                    if(!this.ateApple)
+                        this.body.pop();
+                    else
+                        this.ateApple = false;
+                };
+                this.setDirection = function(newDirection){
+                    let allowedDirections;
+                    switch(this.direction){
+                        case "left":
+                        case "right":
+                            allowedDirections = ["up", "down"];
+                            break;
+                        case "down":
+                        case "up":
+                            allowedDirections = ["left", "right"];
+                            break;
+                        default:
+                            throw("Invalid Direction");
+                    }
+                    if(allowedDirections.indexOf(newDirection) > -1){
+                        this.direction = newDirection;
+                    }
+                };
+                this.checkCollision = function(){
+                    let wallCollision = false;
+                    let snakeCollision = false;
+                    let head = this.body[0];
+                    let rest = this.body.slice(1);
+                    let snakeX = head[0];
+                    let snakeY = head[1];
+                    let minX = 0;
+                    let minY = 0;
+                    let maxX = widthInBlocks - 1;
+                    let maxY = heightInBlocks - 1;
+                    let isNotBetweenHorizontalWalls = snakeX < minX || snakeX > maxX;
+                    let isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY;
+                    if(isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls){
+                        wallCollision = true;
+                    }
+                    for(let i = 0; i < rest.length; i++){
+                        if(snakeX === rest[i][0] && snakeY === rest[i][1]){
+                            snakeCollision = true;
+                        }
+                    }
+                    return wallCollision || snakeCollision;
+                };
+                this.isEatingApple = function(appleToEat){
+                    let head = this.body[0];
+                    if(head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1])
+                        return true;
+                    else
+                        return false;
+                };
+            }
+            function Apple(position){
+                this.position = position;
+                this.draw = function(){
+                    ctx.save();
+                    ctx.fillStyle = "#33cc33";
+                    ctx.beginPath();
+                    let radius = blockSize / 2;
+                    let x = this.position[0] * blockSize + radius;
+                    let y = this.position[1] * blockSize + radius;
+                    ctx.arc(x, y, radius, 0, Math.PI*2, true);
+                    ctx.fill();
+                    ctx.restore();
+                };
+                this.setNewPosition = function(){
+                    let newX = Math.round(Math.random() * (widthInBlocks - 1));
+                    let newY = Math.round(Math.random() * (heightInBlocks - 1));
+                    this.position = [newX, newY];
+                };
+                this.isOnSnake = function(snakeToCheck){
+                    let isOnSnake = false;
+                    for(let i = 0; i < snakeToCheck.body.length; i++){
+                        if(this.position[0] === snakeToCheck.body[i][0] && this.position[1] === snakeToCheck.body[i][1]){
+                            isOnSnake = true;
+                        }
+                    }
+                    return isOnSnake;
+                };
+            }
+            document.onkeydown = function handleKeyDown(e){
+                let key = e.keyCode;
+                let newDirection;
+                switch(key){
+                    case 37:
+                        newDirection = "left";
+                        break;
+                    case 38:
+                        newDirection = "up";
+                        break;
+                    case 39:
+                        newDirection = "right";
+                        break;
+                    case 40:
+                        newDirection = "down";
+                        break;
+                    case 32:
+                        restart();
+                        return;
+                    default:
+                        return;
+                }
+                snake.setDirection(newDirection);
+            }
+        }
+        empezar();
+
+    </script>
+</body>
+</html>
