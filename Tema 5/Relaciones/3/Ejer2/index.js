@@ -90,7 +90,7 @@ window.onload = function() {
             vida.innerText = "Tienes " + vidaNum + " vidas";
             if (vidaNum == 0) {
                 vida = document.getElementById("vidas");
-                vida.innerText = "¡Has perdido!";
+                vida.innerText = "¡Has perdido! La frase era: \n" + palabra.join("");
                 var perdidas = obtenerPerdidas();
                 setCookie("perdidas", perdidas + 1, 365);
                 botones = document.getElementsByTagName("button");
