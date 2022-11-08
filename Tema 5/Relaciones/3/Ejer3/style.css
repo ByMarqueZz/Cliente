@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+}
+
+
+img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+#cartas {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+#cartas div {
+    margin: 1%;
+}
