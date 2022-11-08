@@ -139,8 +139,22 @@ window.onload = function() {
         }
         return parseInt(perdidas);
     }
+    function obtenerPalabrasTxt(){
+        // Abrir un documento txt y añadir su contenido en un array separadas por los saltos de linea
+        var palabrasTxt = new XMLHttpRequest();
+        palabrasTxt.open("GET", "diccionario.txt", false);
+        palabrasTxt.send(null);
+        var palabrasTxt = palabrasTxt.responseText;
+        var palabrasTxt = palabrasTxt.split("\n");
+        // quitar los espacios en blanco
+        for (let i = 0; i < palabrasTxt.length; i++) {
+            palabrasTxt[i] = palabrasTxt[i].trim();
+        }
+        return palabrasTxt;
+
+    }
     // array de palabras con 9 letras
-    var palabras = ["autobuses", "apostoles", "africanos", "capitales", "pelota", "futbol", "mujeres", "hombres", "alopecia", "javascript", "hola", "juan", "ballena"];
+    var palabras = obtenerPalabrasTxt();
     // array de letras
     var letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var palabra = reiniciar();
