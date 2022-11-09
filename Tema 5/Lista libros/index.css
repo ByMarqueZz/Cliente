@@ -1,0 +1,50 @@
+body {
+    background-color: #EAEAEA;
+    color: grey;
+    font-size: 1.2em;
+}
+
+#header {
+    text-align: center;
+    color: black;
+}
+#main {
+    display: flex;
+    /* separar los div */
+    justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+#formulario {
+    color: black;
+}
+
+#formulario input {
+    padding: 1%;
+    border-radius: 3px;
+    border: 1px solid grey;
+    text-decoration: none;
+    width: 100%;
+}
+.flex {
+    display: flex;
+}
+
+.flexDiv1 {
+    margin-right: 5%;
+}
+
+ul {
+    list-style: none;
+}
+
+#addButton {
+    width: 100%;
+    padding: 2%;
+    border-radius: 3px;
+    border: 1px solid grey;
+}
+#addButton:hover {
+    background-color: #EAEAEA;
+    color: grey;
+}
