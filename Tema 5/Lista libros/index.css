@@ -34,6 +34,19 @@ body {
     margin-right: 5%;
 }
 
+.libros {
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 10px 300px 10px 10px;
+    margin-bottom: 10px;
+    color: black;
+    background-color: white;
+}
+
+#listaLeidos {
+    color: black;
+}
+
 ul {
     list-style: none;
 }

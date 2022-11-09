@@ -1,12 +1,13 @@
-import { ListaLibros, Libro} from "./libro.js";
+import { Book, BookList} from "./Book.js";
 
 function pintarLibros(bookList) {
     let lista = document.getElementById('list');
     lista.innerHTML = "";
-    for (let libro of bookList.libros) {
+    let libros = bookList.getBooks();
+    for (let libro of libros) {
         let div = document.createElement("div");
         div.className = 'libros';
-        div.innerHTML = `${libro.titulo}, ${libro.autor}, ${libro.genero}`;
+        div.innerHTML = libro.getAllInfo();
         lista.appendChild(div);
     }
 }
@@ -15,8 +16,8 @@ function addBook(bookList) {
     let author = document.getElementById("autor").value;
     let genre = document.getElementById("genero").value;
     if (title != "" && author != "" && genre != "") {
-        let book = new Libro(title, author, genre);
-        bookList.añadirLibro(book);
+        let book = new Book(title, author, genre);
+        bookList.add(book);
         pintarLibros(bookList);
     }
     document.getElementById("titulo").value = "";
@@ -25,7 +26,7 @@ function addBook(bookList) {
 }
 
 window.onload = function () {
-    let bookList = new ListaLibros();
+    let bookList = new BookList();
     let button = document.getElementById("addButton");
     button.addEventListener("click", function () {
         addBook(bookList);
