@@ -158,5 +158,5 @@ window.onload = function() {
     // array de letras
     const letras = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var palabra = reiniciar();
-    document.getElementById("reiniciar").addEventListener("click", reiniciar);   
+    document.getElementById("reiniciar").addEventListener("click", reiniciar);
 }
