@@ -33,6 +33,10 @@ body {
     flex-grow: 1;
 }
 
+#inputText:focus {
+    outline: none;
+}
+
 #inputButton {
     background-color: #A5D5F9;
     color: black;
