@@ -74,6 +74,8 @@ window.onload = function() {
     function restart() {
         vidas = document.getElementById("vidas");
         vidas.innerHTML = "Tienes 10 vidas";
+        h1 = document.getElementsByTagName('h1')[0];
+        h1.innerHTML = "Adivina la carta";
         buttonDisabled = document.getElementById('reset');
         buttonDisabled.disabled = true;
         buttonDisabled.addEventListener("click", restart);
