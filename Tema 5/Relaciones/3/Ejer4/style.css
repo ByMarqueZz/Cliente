@@ -1,0 +1,62 @@
+body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background-color: #F1F5F8;
+}
+
+#main {
+    text-align: center;
+    background-color: #FFFFFF;
+    max-width: 400px;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 6%;
+    margin-top: 10%;
+}
+
+#main h1 {
+    color: #002B4B;
+    margin-top: -20px;
+}
+
+#input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1%;
+}
+
+#inputText {
+    color: #677C93;
+    border-color: #0051C7;
+    border-radius: 5px;
+    height: 23px;
+    flex-grow: 1;
+}
+
+#inputButton {
+    background-color: #A5D5F9;
+    color: black;
+    border-radius: 5px;
+    border-color: transparent;
+}
+
+#buttonClear {
+    color: red;
+    border-color: transparent;
+    background-color: transparent;
+    margin-top:20px;
+}
+
+.itemDiv {
+    display: flex;
+}
+
+.divText {
+    flex-grow: 1;
+    text-align: start;
+}
+
+.divTrash img {
+    width: 24px;
+    height: 24px;
+}

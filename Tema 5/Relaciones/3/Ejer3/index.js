@@ -24,7 +24,9 @@ window.onload = function() {
         if (cartasPulsadas.length == 2) {
             // hacer un setTimeout para que se vea la carta
             setTimeout(function() {
-                if (cartasPulsadas[0].src == cartasPulsadas[1].src) {
+                if (cartasPulsadas[0].id == cartasPulsadas[1].id) {
+                    cartasPulsadas.splice(0, 2);
+                } else if (cartasPulsadas[0].src == cartasPulsadas[1].src) {
                     // accedo al id de la carta sin el img
                     div = document.getElementById(cartasPulsadas[0].id.substring(3));
                     div2 = document.getElementById(cartasPulsadas[1].id.substring(3));
