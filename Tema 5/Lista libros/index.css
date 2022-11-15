@@ -8,6 +8,7 @@ body {
     text-align: center;
     color: black;
 }
+
 #main {
     display: flex;
     /* separar los div */
@@ -15,6 +16,7 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
+
 #formulario {
     color: black;
 }
@@ -26,6 +28,7 @@ body {
     text-decoration: none;
     width: 100%;
 }
+
 .flex {
     display: flex;
 }
@@ -57,7 +60,19 @@ ul {
     border-radius: 3px;
     border: 1px solid grey;
 }
+
 #addButton:hover {
     background-color: #EAEAEA;
     color: grey;
+}
+
+#vistas  button{
+    width: 100%;
+    padding: 2%;
+    border-radius: 3px;
+    border: 1px solid grey;
+}
+#buttonLista {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
