@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['PSOE',     120],
+            ['PP',      89],
+            ['Vox',  52],
+            ['UP', 35],
+            ['ERC',    13],
+            ['Cs', 10],
+            ['PACMA',    5],
+            ['PNV', 3],
+            ['Bildu', 2],
+            ['Otros', 1],
+            ]);
+
+            var options = {
+            title: 'My Daily Activities',
+            is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ["Element", "Density", { role: "style" } ],
+            ["PSOE", 120, "red"],
+            ["PP", 89, "blue"],
+            ["Vox", 52, "green"],
+            ["UP", 35, "pruple"],
+            ["ERC", 13, "yellow"],
+            ["Cs", 10, "orange"],
+            ["PACMA", 5, "pink"],
+            ["PNV", 3, "brown"],
+            ["Bildu", 2, "grey"],
+            ["Otros", 1, "black"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation" },
+                        2]);
+
+        var options = {
+            title: "Density of Precious Metals, in g/cm^3",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: { position: "none" },
+        };
+        var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+        chart.draw(view, options);
+    }
+    // pasados 10 segundos cambian los datos y debe animarse automáticamente.
+    setTimeout(function(){
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['PSOE',     12],
+            ['PP',      890],
+            ['Vox',  512],
+            ['UP', 3],
+            ['ERC',    1],
+            ['Cs', 1],
+            ['PACMA',    51],
+            ['PNV', 1],
+            ['Bildu', 2],
+            ['Otros', 1],
+            ]);
+
+            var options = {
+            title: 'My Daily Activities',
+            is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+        var data = google.visualization.arrayToDataTable([
+            ["Element", "Density", { role: "style" } ],
+            ["PSOE", 120, "red"],
+            ["PP", 89, "blue"],
+            ["Vox", 52, "green"],
+            ["UP", 35, "pruple"],
+            ["ERC", 13, "yellow"],
+            ["Cs", 10, "orange"],
+            ["PACMA", 5, "pink"],
+            ["PNV", 3, "brown"],
+            ["Bildu", 2, "grey"],
+            ["Otros", 1, "black"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                        { calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation" },
+                        2]);
+
+        var options = {
+            title: "Density of Precious Metals, in g/cm^3",
+            width: 600,
+            height: 400,
+            bar: {groupWidth: "95%"},
+            legend: { position: "none" },
+        };
+        var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+        chart.draw(view, options);
+    }
+    }, 10000);
+    </script>
+</head>
+<body>
+    <div id="chart_div">
+    </div>
+    <div id="barchart_values" style="width: 900px; height: 300px;">
+    </div>
+</body>
+</html>
