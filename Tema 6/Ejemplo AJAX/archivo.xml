@@ -1,0 +1,17 @@
+<usuarios>
+    <datosUsuario>
+        <nombre>Pepe</nombre>
+        <apellidos>Grillo</apellidos>
+        <edad>25</edad>
+    </datosUsuario>
+    <datosUsuario>
+        <nombre>Jose</nombre>
+        <apellidos>Grillo</apellidos>
+        <edad>25</edad>
+    </datosUsuario>
+    <datosUsuario>
+        <nombre>Alfonso</nombre>
+        <apellidos>Grillo</apellidos>
+        <edad>25</edad>
+    </datosUsuario>
+</usuarios>
