@@ -3,16 +3,16 @@ window.onload = function() {
     button.onclick = peticion;
 }
 function peticion() {
-    httpRequest = new XMLHttpRequest;
+    httpRequest = new XMLHttpRequest();
+    httpRequest.open("GET", "http://www.omdbapi.com/?apikey=b8d85a5&s=star", true);
     httpRequest.onreadystatechange = trateRespuesta;
-    httpRequest.open("GET", "archivo.xml");
     httpRequest.send();
 }
 function trateRespuesta() {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
         if (httpRequest.status === 200) {
             var objetoXML = httpRequest.responseXML;
-            document.body.innerHTML += objetoXML.getElementsByTagName("nombre")[0].innerHTML;
+            document.body.innerHTML += objetoXML;
         } else {
             alert("There was a problem with the request.");
         }
