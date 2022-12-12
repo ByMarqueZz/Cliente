@@ -47,12 +47,6 @@ class ColecctionNotes {
             `;
         }
     }
-    chekedAll() {
-        $('.note__checked').click(function () {
-            $(this).toggleClass('note__checked--checked');
-            $(this).next().toggleClass('note__title--checked');
-        });
-    }
     changePriority(id, newPriority) {
         this.notes[id].priority = newPriority;
         localStorage.setItem('notes', JSON.stringify(this.notes));
