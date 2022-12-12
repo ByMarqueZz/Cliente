@@ -92,6 +92,13 @@ function trateRespuesta() {
         if (httpRequest.status === 200) {
             var objetoXML = JSON.parse(httpRequest.responseText);
             console.log(objetoXML);
+            if (objetoXML.animals.length === 0) {
+                let divPrincipal = document.getElementById("perros");
+                let div = document.createElement("div");
+                div.className = "perro";
+                div.innerText = "No hay más perros de esta raza";
+                divPrincipal.appendChild(div);
+            }
             for (perro of objetoXML.animals) {
                 var divPrincipal = document.getElementById("perros");
                 let div = document.createElement("div");
