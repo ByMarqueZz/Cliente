@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <div id="app">{{ message }}
-        <button @click="listaNombres.push('otro')">Cambiar visibilidad {{ nombreSeVe }}</button>
+        <button @click="cambiarVisibilidad">Cambiar visibilidad {{ nombreSeVe }}</button>
         <h2 v-if="nombreSeVe">{{ nombre }}</h2>
         <ul>
             <li v-for="nombre2 in listaNombres">{{ nombre2 }}</li>
@@ -22,12 +22,17 @@
 
         createApp({
             data() {
-            return {
-                nombre: 'Juan',
-                message: 'Hello Vue!',
-                nombreSeVe: true,
-                listaNombres: ['Juan', 'Pedro', 'Maria', 'Jose']
-            }
+                return {
+                    nombre: 'Juan',
+                    message: 'Hello Vue!',
+                    nombreSeVe: true,
+                    listaNombres: ['Juan', 'Pedro', 'Maria', 'Jose']
+                }
+            },
+            methods: {
+                cambiarVisibilidad() {
+                    this.listaNombres.push('Nuevo nombre')
+                }
             }
         }).mount('#app')
     </script>
