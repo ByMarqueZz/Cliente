@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">{{ message }}
+        <button @click="listaNombres.push('otro')">Cambiar visibilidad {{ nombreSeVe }}</button>
+        <h2 v-if="nombreSeVe">{{ nombre }}</h2>
+        <ul>
+            <li v-for="nombre2 in listaNombres">{{ nombre2 }}</li>
+        </ul>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+            return {
+                nombre: 'Juan',
+                message: 'Hello Vue!',
+                nombreSeVe: true,
+                listaNombres: ['Juan', 'Pedro', 'Maria', 'Jose']
+            }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
