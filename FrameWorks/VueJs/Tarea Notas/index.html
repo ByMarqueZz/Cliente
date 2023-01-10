@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="./vue.js" type="module"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h2 id="tittle">Proyecto de tareas - Juan A. Márquez</h2>
+        <div id="divInput">
+            <input type="text" id="inputText" placeholder="¿Qué quieres recordar?">
+            <button id="inputButton" @click="addNote()">Enviar</button>
+        </div>
+        <hr>
+    
+        <p><b>{{pendientes}}</b> Tareas pendientes de un total de <b>{{calcularTotales}}</b> | <b id="completadas">X Borrar tareas completadas</b></p>
+        <hr>
+        <div id="notes">
+        </div>
+    </div>
+</body>
+</html>
